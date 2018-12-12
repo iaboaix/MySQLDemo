@@ -8,14 +8,14 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_database(object):
+class MainWindow(object):
     def setupUi(self, database):
         database.setObjectName("database")
-        database.resize(966, 696)
+        database.resize(1500, 1000)
         self.gridLayout_2 = QtWidgets.QGridLayout(database)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.table = QtWidgets.QTableWidget(database)
-        self.table.setMaximumSize(QtCore.QSize(160, 16777215))
+        self.table.setMaximumSize(QtCore.QSize(300, 16777215))
         self.table.setRowCount(0)
         self.table.setColumnCount(1)
         self.table.setObjectName("table")
@@ -23,7 +23,7 @@ class Ui_database(object):
         self.table.setHorizontalHeaderItem(0, item)
         self.table.horizontalHeader().setVisible(True)
         self.table.horizontalHeader().setCascadingSectionResizes(False)
-        self.table.horizontalHeader().setDefaultSectionSize(147)
+        self.table.horizontalHeader().setDefaultSectionSize(300)
         self.gridLayout_2.addWidget(self.table, 1, 0, 2, 1)
         self.data = QtWidgets.QTableWidget(database)
         self.data.setObjectName("data")
@@ -41,9 +41,6 @@ class Ui_database(object):
         self.sqlLine.setSizePolicy(sizePolicy)
         self.sqlLine.setObjectName("sqlLine")
         self.gridLayout_2.addWidget(self.sqlLine, 1, 1, 1, 1)
-        self.freshBtn = QtWidgets.QPushButton(database)
-        self.freshBtn.setObjectName("freshBtn")
-        self.gridLayout_2.addWidget(self.freshBtn, 1, 3, 1, 1)
         self.groupBox = QtWidgets.QGroupBox(database)
         self.groupBox.setObjectName("groupBox")
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox)
@@ -51,9 +48,9 @@ class Ui_database(object):
         self.hostLine = QtWidgets.QLineEdit(self.groupBox)
         self.hostLine.setObjectName("hostLine")
         self.gridLayout.addWidget(self.hostLine, 0, 2, 1, 1)
-        self.portLine = QtWidgets.QLineEdit(self.groupBox)
-        self.portLine.setObjectName("portLine")
-        self.gridLayout.addWidget(self.portLine, 0, 4, 1, 1)
+        self.dbNameLine = QtWidgets.QLineEdit(self.groupBox)
+        self.dbNameLine.setObjectName("dbNameLine")
+        self.gridLayout.addWidget(self.dbNameLine, 0, 4, 1, 1)
         self.label = QtWidgets.QLabel(self.groupBox)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 3, 1, 1)
@@ -82,6 +79,12 @@ class Ui_database(object):
         self.gridLayout.addWidget(self.connectBtn, 0, 5, 3, 1)
         self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 4)
 
+        self.passwordLine.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.hostLine.setPlaceholderText('Input Ip Address')
+        self.dbNameLine.setPlaceholderText('Input DataBase Name')
+        self.userLine.setPlaceholderText('Input Username')
+        self.passwordLine.setPlaceholderText('Input Password')
+
         self.retranslateUi(database)
         QtCore.QMetaObject.connectSlotsByName(database)
 
@@ -91,15 +94,11 @@ class Ui_database(object):
         item = self.table.horizontalHeaderItem(0)
         item.setText(_translate("database", "table in database"))
         self.executeBtn.setText(_translate("database", "execute"))
-        self.freshBtn.setText(_translate("database", "fresh"))
         self.groupBox.setTitle(_translate("database", "connect database"))
         self.hostLine.setText(_translate("database", "localhost"))
-        self.portLine.setText(_translate("database", "db_school"))
         self.label.setText(_translate("database", "database:"))
         self.label_2.setText(_translate("database", "ip:"))
         self.label_3.setText(_translate("database", "user:"))
         self.label_4.setText(_translate("database", "password:"))
-        self.passwordLine.setText(_translate("database", "0000"))
-        self.userLine.setText(_translate("database", "root"))
         self.connectBtn.setText(_translate("database", "connect"))
 

@@ -1,25 +1,27 @@
 import sys
 import pymysql
+import qdarkstyle
 from PyQt5.QtWidgets import QWidget, QApplication, QTableWidgetItem
-from database import Ui_database
+from MainWindow import MainWindow
 
 
-class MainWindow(QWidget, Ui_database):
+class MysqlDemo(QWidget, MainWindow):
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(MysqlDemo, self).__init__()
         self.setupUi(self)
+
         self.connectBtn.clicked.connect(self.showTables)
         self.executeBtn.clicked.connect(self.executesql)
-        self.table.cellClicked.connect(self.datachanged)
+        self.table.cellClicked.connect(self.dataChanged)
 
-    def datachanged(self, row, col):
+    def dataChanged(self, row, col):
         tablename = self.table.item(row, 0).text()
         self.sqlLine.setText('select * from {}'.format(tablename))
         self.executesql()
 
     def showTables(self):
         host = self.hostLine.text()
-        database = self.portLine.text()
+        database = self.dbNameLine.text()
         user = self.userLine.text()
         password = self.passwordLine.text()
         self.db = pymysql.connect(host=host, port=3306, user=user,
@@ -87,7 +89,7 @@ class MainWindow(QWidget, Ui_database):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    win = MainWindow()
-    # win.setStyleSheet(qss)
+    win = MysqlDemo()
+    win.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
     win.show()
     sys.exit(app.exec_())
